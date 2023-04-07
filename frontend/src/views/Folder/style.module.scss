@@ -1,0 +1,92 @@
+.df {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .linktohome {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #000;
+    text-decoration: none;
+  }
+  .folder__title  {
+    span {
+      font-size: 16px;
+    }
+  }
+  .folder__count {
+    span {
+      font-size: 16px;
+    }
+  }
+}
+.grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  text-align: center;
+  
+
+  .file {
+    padding: 10px;
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    &__title {
+      user-select: none;
+    }
+
+    &__edit {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 90%;
+      cursor: pointer;
+      display: none;
+    }
+
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.10);
+    }
+
+    &:hover > &__edit {
+      display: block;
+    }
+
+    &__icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .addnewfolder {
+    padding: 10px;
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.10);
+
+      img {
+        transform: scale(1.10);
+      }
+    }
+
+    img {
+      transition: all 0.3s linear;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

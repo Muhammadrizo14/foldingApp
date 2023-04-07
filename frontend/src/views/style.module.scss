@@ -1,0 +1,120 @@
+.wrapper {
+  .title {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+    text-align: center;
+
+    .addnewfolder {
+      padding: 10px;
+      width: 300px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.10);
+
+        img {
+          transform: scale(1.10);
+        }
+      }
+
+      img {
+        transition: all 0.3s linear;
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+
+  .popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.10);
+
+    &__content {
+      .msform {
+        width: 600px;
+        margin: 50px auto;
+        text-align: center;
+        position: relative;
+      }
+
+      .msform fieldset {
+        background: white;
+        border: 0 none;
+        border-radius: 3px;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+        padding: 20px 30px;
+        box-sizing: border-box;
+        width: 80%;
+        margin: 0 10%;
+
+        /*stacking fieldsets above each other*/
+        position: relative;
+      }
+
+      .popupclose {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 0px;
+        right: 10px;
+      }
+
+      /*inputs*/
+      .msform input,
+      .msform textarea {
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        color: #2C3E50;
+        font-size: 13px;
+        outline: none;
+      }
+
+      /*buttons*/
+      .msform .actionButton {
+        width: 100px;
+        background: #27AE60;
+        font-weight: bold;
+        color: white;
+        border: 0 none;
+        border-radius: 1px;
+        cursor: pointer;
+        padding: 10px;
+        margin: 10px 5px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .msform .actionButton:hover,
+      .msform .actionButton:focus {
+        box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+      }
+      .fsTitle {
+        margin-bottom: 20px;
+      }
+    
+    }
+  }
+
+}

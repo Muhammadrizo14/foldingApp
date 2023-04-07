@@ -1,0 +1,7 @@
+POST http://localhost:3001/folder
+Content-Type: application/json
+
+{
+  "title": "Fovourites",
+  "fileId": 2
+}
