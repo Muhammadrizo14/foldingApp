@@ -1,3 +1,5 @@
+У вас на пк должен быть установлен <a href="https://nodejs.org/en">node js</a>
+
 # Как запустить backend
 
 
@@ -6,11 +8,11 @@
 
 <p>в <code>.env</code> файле надо указать путь базу данных, я использую mysql </p>
 
-<code>npx prisma migrate --name init</code>
+<code>npx prisma migrate dev --name init</code>
 
 <code>npm run start:dev</code> // чтобы запустить
 
-# Как запустить fronend
+# Как запустить frontend
 
 <code>npm i</code>
 
