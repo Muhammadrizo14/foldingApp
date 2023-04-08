@@ -12,12 +12,12 @@ export class AppService {
   getHello(): Rout[] {
     const router: Rout[] = [
       {
-        title: 'Folder',
+        title: 'Для получения папок',
         url: `http://localhost:${port}/folder`
       },
       {
-        title: 'File',
-        url: `http://localhost:${port}/file`
+        title: 'Для получения файлов',
+        url: `http://localhost:${port}/upload`
       },
     ] 
     return router;
