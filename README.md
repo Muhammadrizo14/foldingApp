@@ -12,7 +12,7 @@
 
 <code>npm run start:dev</code> // чтобы запустить
 
-# Как запустить fronend
+# Как запустить frontend
 
 <code>npm i</code>
 
