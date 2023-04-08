@@ -37,7 +37,7 @@ export default function Folder() {
   const [lastUploadedFile, setLastUploadedFile] = useState()
 
 
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -85,7 +85,8 @@ export default function Folder() {
         .then((res) => {
           axios.patch(`http://localhost:3001/upload/${res.data.id}`, { folderId: Number(id) })
             .then((res) => {
-              console.log(res);
+              getAllFolders()
+              setSelectedImage(null)
             })
             .catch((err) => {
               console.log(err);
@@ -138,13 +139,15 @@ export default function Folder() {
           </label>
 
           {selectedImage && (
-            <div>
-              <img
-                width={600}
-                src={URL.createObjectURL(selectedImage)}
-                alt="Thumb"
-              />
-              <button onClick={() => sendToBack()}>send</button>
+            <div className={styles.popupimage}>
+              <div className={styles.popupimagecontent}>
+
+                <img
+                  src={URL.createObjectURL(selectedImage)}
+                  alt="Thumb"
+                />
+                <button onClick={() => sendToBack()}>send</button>
+              </div>
             </div>
           )}
         </div>
