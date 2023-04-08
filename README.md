@@ -1,4 +1,4 @@
-# Как запустить backend
+# Как запустить backend || У вас на пк должен быть установлен <a href="https://nodejs.org/en">node js</a>
 
 
 <code>npm i</code>
