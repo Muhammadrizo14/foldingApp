@@ -44,12 +44,14 @@
     }
 
     &__edit {
-      width: 20px;
-      height: 20px;
       position: absolute;
       left: 90%;
       cursor: pointer;
       display: none;
+      img {
+        width: 20px;
+        height: 20px;
+      }
     }
 
 
@@ -57,8 +59,10 @@
       background-color: rgba(0, 0, 0, 0.10);
     }
 
-    &:hover > &__edit {
-      display: block;
+    &:hover { 
+      .file__edit {
+        display: block;
+      }
     }
 
     &__icon {

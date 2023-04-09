@@ -13,11 +13,14 @@ const App:React.FC = ()=> {
   return (
     <>
       <Routes>
+        {/* Путь / (дома) */}
         <Route path="/" element={<Home />}></Route>
+
+        {/* Путь содержимого папки */}
         <Route path="folder">
+          {/* Папка найдётся с помощью id */}
           <Route path=':id' element={<Folder />} />
         </Route>
-
       </Routes>
     </>
   );
