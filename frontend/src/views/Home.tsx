@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Все папки</h1>
+        <h1 className={styles.title}>Все папки <code>Develop</code> </h1>
         <div className={styles.grid}>
           {/* Мапаю полученный список папок */}
           {folders.map(folder => (
