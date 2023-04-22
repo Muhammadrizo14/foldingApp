@@ -17,18 +17,18 @@ export class FolderController {
     return this.folderService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.folderService.findOne(+id);
+  @Get(':title')
+  findOneByName(@Param('title') title: string) {
+    return this.folderService.findOneByName(title);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFolderDto: UpdateFolderDto) {
-    return this.folderService.update(+id, updateFolderDto);
+  @Patch(':title')
+  update(@Param('title') title: string, @Body() updateFolderDto: UpdateFolderDto) {
+    return this.folderService.update(title, updateFolderDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.folderService.remove(+id);
+  @Delete(':title')
+  remove(@Param('title') title: string) {
+    return this.folderService.remove(title);
   }
 }

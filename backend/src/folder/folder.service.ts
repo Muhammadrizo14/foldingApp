@@ -15,18 +15,19 @@ export class FolderService {
       return this.prismaService.folder.findMany({include: {uploadedFile: true}})
   }
 
-  findOne(id: number) {
+
+  findOneByName(title: string) {
     return this.prismaService.folder.findUnique({
-      where: {id},
+      where: {title},
       include: {uploadedFile: true}
     })
   }
 
-  update(id: number, updateFolderDto: UpdateFolderDto) {
-    return this.prismaService.folder.update({where: {id}, data: updateFolderDto})
+  update(title: string, updateFolderDto: UpdateFolderDto) {
+    return this.prismaService.folder.update({where: {title}, data: updateFolderDto})
   }
 
-  remove(id: number) {
-    return this.prismaService.folder.delete({where: {id}})
+  remove(title: string) {
+    return this.prismaService.folder.delete({where: {title}})
   }
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect, useRef } from 'react'
 import styles from './style.module.scss'
-import FolderCard from '../components/FolderCad/FolderCad';
+import FolderCard from '../components/FolderCard/FolderCard';
 
 
 // Тип получаемой данных 
@@ -78,7 +78,7 @@ export default function Home() {
         {popupActive && (
           <div className={styles.popup}>
             <div className={styles.popup__content}>
-              <form className={styles.msform}>
+              <form action='#' className={styles.msform}>
                 <fieldset>
                   {/* При клике значения popupActive изменится false */}
                   <img

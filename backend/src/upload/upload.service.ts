@@ -15,11 +15,12 @@ export class UploadService {
   constructor(private prismaService: PrismaService) {}
 
   create(createUploadDto: Prisma.UploadedFileCreateInput) {
-    if (createUploadDto.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
-      const filePath = fs.readFileSync(createUploadDto.path)
-      sharp(filePath).resize(64, 64).toFile(createUploadDto.destination+"/mini_"+createUploadDto.filename);
-      createUploadDto.nameMini = "mini_"+createUploadDto.filename
-    }
+    // Если мне нужно мини картинку
+    // if (createUploadDto.mimetype.match(/\/(jpg|jpeg|png|gif)$/)) {
+    //   const filePath = fs.readFileSync(createUploadDto.path)
+    //   sharp(filePath).resize(64, 64).toFile(createUploadDto.destination+"/mini_"+createUploadDto.filename);
+    //   createUploadDto.nameMini = "mini_"+createUploadDto.filename
+    // }
     return this.prismaService.uploadedFile.create({data: createUploadDto})
   }
 
@@ -41,9 +42,6 @@ export class UploadService {
 
   async getFileByName(fileName: string) {
     let file = await this.prismaService.uploadedFile.findUnique({where: {filename: fileName}})
-    if (!file) {
-      file = await this.prismaService.uploadedFile.findUnique({where: {nameMini: fileName}})
-    }
     return createReadStream(join(file.path))
   }
 

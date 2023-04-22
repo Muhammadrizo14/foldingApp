@@ -12,7 +12,7 @@ datasource db {
 
 model Folder {
   id           Int            @id @default(autoincrement())
-  title        String?
+  title        String?        @unique
   uploadedFile UploadedFile[]
 }
 
@@ -24,12 +24,11 @@ model UploadedFile {
   mimetype     String
   destination  String
   filename     String    @unique
-  nameMini     String    @unique @default("")
   path         String
   size         Int
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt()
   deletedAt    DateTime?
-  folder       Folder?    @relation(fields: [folderId], references: [id])
-  folderId     Int?
+  folder       Folder?    @relation(fields: [folderTitle], references: [title])
+  folderTitle  String?
 }

@@ -7,9 +7,8 @@ export class UploadEntity {
   destination: string
   filename: string
   path:  string
-  nameMini:  string
   size: number
   createdAt: Date
   updatedAt: Date
-  folderId: number
+  folderTitle: string
 }

@@ -1,13 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Home from './views/Home';
 import Folder from './views/Folder/Folder';
-
-type FoldersType = {
-  id: number,
-  title: string,
-}
 
 const App:React.FC = ()=> {
   return (
@@ -18,8 +11,8 @@ const App:React.FC = ()=> {
 
         {/* Путь содержимого папки */}
         <Route path="folder">
-          {/* Папка найдётся с помощью id */}
-          <Route path=':id' element={<Folder />} />
+          {/* Папка найдётся с помощью title */}
+          <Route path=':title' element={<Folder />} />
         </Route>
       </Routes>
     </>
