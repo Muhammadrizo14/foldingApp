@@ -9,7 +9,7 @@
     color: #000;
     text-decoration: none;
   }
-  .folder__title  {
+  .folder__title {
     span {
       font-size: 16px;
     }
@@ -27,72 +27,6 @@
   grid-template-rows: 1fr;
   gap: 10px;
   text-align: center;
-  
-
-  .file {
-    padding: 10px;
-    width: 400px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-
-    &__title {
-      user-select: none;
-    }
-
-    &__edit {
-      position: absolute;
-      left: 90%;
-      cursor: pointer;
-      display: none;
-      img {
-        width: 20px;
-        height: 20px;
-      }
-    }
-
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.10);
-    }
-
-    &:hover { 
-      .file__edit {
-        display: block;
-      }
-    }
-
-    &__icon {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .addnewfolder {
-    padding: 10px;
-    width: 300px;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.10);
-
-      img {
-        transform: scale(1.10);
-      }
-    }
-
-    img {
-      transition: all 0.3s linear;
-      width: 100px;
-      height: 100px;
-    }
-  }
 
   .popupimage {
     position: absolute;
@@ -102,7 +36,7 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.10);
+    background-color: rgba(0, 0, 0, 0.1);
     &content {
       width: 600px;
       height: 600px;
@@ -115,4 +49,57 @@
       }
     }
   }
+}
+
+.addnewfolder {
+  padding: 10px;
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+
+    img {
+      transform: scale(1.1);
+    }
+  }
+
+  img {
+    transition: all 0.3s linear;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 5px;
+  border: #ccc 1px solid;
+  align-items: center;
+  outline: none;
+  justify-content: center !important;
+}
+
+.cart {
+  text-align: center;
+}
+.cardS {
+  margin: 0 auto;
+}
+.uploadedFile {
+  width: 100%;
+  height: 100%;
+}
+.options {
+  cursor: pointer;
+  position: absolute;
+  top: 95%;
+  left: 93%;
+}
+.layout {
+  margin-top: 30px;
 }

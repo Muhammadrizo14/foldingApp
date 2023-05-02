@@ -5,29 +5,32 @@ import { UpdateFolderDto } from './dto/update-folder.dto';
 
 @Injectable()
 export class FolderService {
-  constructor(private prismaService: PrismaService) {
-  }
+  constructor(private prismaService: PrismaService) { }
   create(createFolderDto: CreateFolderDto) {
-    return this.prismaService.folder.create({data: createFolderDto})
+    return this.prismaService.folder.create({ data: createFolderDto });
   }
 
   findAll() {
-      return this.prismaService.folder.findMany({include: {uploadedFile: true}})
+    return this.prismaService.folder.findMany({
+      include: { uploadedFile: true },
+    });
   }
-
 
   findOneByName(title: string) {
     return this.prismaService.folder.findUnique({
-      where: {title},
-      include: {uploadedFile: true}
-    })
+      where: { title },
+      include: { uploadedFile: true },
+    });
   }
 
   update(title: string, updateFolderDto: UpdateFolderDto) {
-    return this.prismaService.folder.update({where: {title}, data: updateFolderDto})
+    return this.prismaService.folder.update({
+      where: { title },
+      data: updateFolderDto,
+    });
   }
 
   remove(title: string) {
-    return this.prismaService.folder.delete({where: {title}})
+    return this.prismaService.folder.delete({ where: { title } });
   }
 }
