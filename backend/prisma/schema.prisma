@@ -13,6 +13,9 @@ datasource db {
 model Folder {
   id           Int            @id @default(autoincrement())
   title        String?        @unique
+  hide         Boolean        @default(false)
+  createdAt    DateTime       @default(dbgenerated("NOW()")) @db.DateTime
+  updatedAt    DateTime       @updatedAt()
   uploadedFile UploadedFile[]
 }
 
@@ -26,9 +29,9 @@ model UploadedFile {
   filename     String    @unique
   path         String
   size         Int
-  createdAt    DateTime  @default(now())
+  createdAt    DateTime  @default(dbgenerated("NOW()")) @db.DateTime
   updatedAt    DateTime  @updatedAt()
   deletedAt    DateTime?
-  folder       Folder?    @relation(fields: [folderTitle], references: [title])
+  folder       Folder?   @relation(fields: [folderTitle], references: [title], onDelete: Cascade)
   folderTitle  String?
 }
