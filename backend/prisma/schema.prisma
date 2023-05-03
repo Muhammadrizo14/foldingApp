@@ -6,32 +6,33 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model Folder {
   id           Int            @id @default(autoincrement())
   title        String?        @unique
   hide         Boolean        @default(false)
-  createdAt    DateTime       @default(dbgenerated("NOW()")) @db.DateTime
+  createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt()
   uploadedFile UploadedFile[]
 }
 
 model UploadedFile {
-  id           Int       @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   fieldname    String
   originalname String
   encoding     String
   mimetype     String
   destination  String
-  filename     String    @unique
+  filename     String   @unique
   path         String
   size         Int
-  createdAt    DateTime  @default(dbgenerated("NOW()")) @db.DateTime
-  updatedAt    DateTime  @updatedAt()
-  deletedAt    DateTime?
-  folder       Folder?   @relation(fields: [folderTitle], references: [title], onDelete: Cascade)
-  folderTitle  String?
+  createdAt    DateTime @default(now())
+
+  updatedAt   DateTime  @updatedAt()
+  deletedAt   DateTime?
+  folder      Folder?   @relation(fields: [folderTitle], references: [title], onDelete: Cascade)
+  folderTitle String?
 }
