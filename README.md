@@ -5,6 +5,10 @@
 
 <code>npm i</code>
 
+# В файле schema.prisma вы можете изменить бд 
+```
+afd
+```
 
 <code>npx prisma migrate dev --name init</code>
 
