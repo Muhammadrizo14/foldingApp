@@ -7,7 +7,10 @@
 
 # В файле schema.prisma вы можете изменить бд 
 ```
-afd
+datasource db {
+  provider = "sqlite" // Бд здесь я использую sqlite вы можете например PostgreSQL
+  url      = "file:./dev.db" // Здесь путь к бд, можно также указать путь в файле .env, так сделано в ветке develop там использовано БД mysql
+}
 ```
 
 <code>npx prisma migrate dev --name init</code>
