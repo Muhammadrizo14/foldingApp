@@ -6,40 +6,22 @@ import {
 import { message, Modal, Switch } from "antd";
 import axios from "axios";
 import React, { useState, useEffect, useRef } from "react";
+import { useCookies } from "react-cookie";
+import FoldersType from "../@types/folder";
 import FolderCard from "../components/FolderCard/FolderCard";
 import styles from "./style.module.scss";
 
-// Тип получаемой данных
-type FoldersType = {
-  id: number;
-  title: string;
-  hide: boolean;
-  uploadedFile: {
-    id: number;
-    fieldname: string;
-    originalname: string;
-    encoding: string;
-    mimetype: string;
-    destination: string;
-    filename: string;
-    path: string;
-    nameMini: string;
-    size: number;
-    createdAt: Date;
-    updatedAt: Date;
-    folderId: number;
-  };
-};
 const Home: React.FC = () => {
   const [folders, isFolders] = useState<FoldersType[]>([]);
   const [foldersSorted, isFoldersSorted] = useState<FoldersType[]>([]);
   const [popupActive, isPopupActive] = useState<boolean>(false);
   const newFoldersTitle = useRef<HTMLInputElement>(null);
   const [settingsActive, setSettingsActive] = useState(false);
-  const [hideFolder, setHideFolders] = useState(false);
+  const [hideFolder, setHideFolders] = useState(true);
   const [hideFolderContent, setHideFoldersContent] = useState<FoldersType[]>(
     []
   );
+  const [cookies, setCookies] = useCookies(["hide"]);
 
   // Чтобы получить список папок
   const getAllFolders = () => {
@@ -70,19 +52,23 @@ const Home: React.FC = () => {
       });
   };
   const getFolders = () => {
-    if (!hideFolder) {
+    if (!cookies.hide) {
       setHideFoldersContent(foldersSorted);
-    } else if (hideFolder) {
+    } else if (cookies.hide) {
       return setHideFoldersContent(folders);
     }
   };
   useEffect(() => {
     getAllFolders();
-    getFolders();
+    if (localStorage.getItem("hide") === undefined) {
+      localStorage.setItem("hide", "false");
+
+      console.log(localStorage.getItem("hide"));
+    }
   }, []);
   useEffect(() => {
     getFolders();
-  }, [hideFolder]);
+  }, [cookies.hide]);
 
   return (
     <div>
@@ -102,9 +88,17 @@ const Home: React.FC = () => {
             <li>
               Показать скрытые файлы &nbsp;
               <Switch
-                onChange={() => setHideFolders((prev) => !prev)}
+                onChange={async () => {
+                  await setHideFolders((prev) => !prev);
+                  await setCookies("hide", hideFolder, { path: "/" });
+                  await console.log(cookies.hide, "cookie");
+                  await console.log(hideFolder, "state");
+                }}
                 checkedChildren={<CheckOutlined />}
                 unCheckedChildren={<CloseOutlined />}
+                defaultChecked={JSON.parse(
+                  localStorage.getItem("hide") as unknown as string
+                )}
               />
             </li>
           </ul>

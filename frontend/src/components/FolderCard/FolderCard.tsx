@@ -1,52 +1,46 @@
 import style from "./style.module.scss";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Modal } from "antd";
+import { Button, Modal, Switch } from "antd";
 import Paragraph from "antd/es/typography/Paragraph";
 import axios from "axios";
+import { useState } from "react";
+import formatBytes from "../../helpers/formatBytes";
+import FoldersType from "../../@types/folder";
+import uploadedFile from "../../@types/uploadedFile";
 
 // Типы получаемых пропсов
 interface IProps {
-  folder: {
-    id: number;
-    title: string;
-    hide: boolean;
-    uploadedFile: {
-      id: number;
-      fieldname: string;
-      originalname: string;
-      encoding: string;
-      mimetype: string;
-      destination: string;
-      filename: string;
-      path: string;
-      nameMini: string;
-      size: number;
-      createdAt: Date;
-      updatedAt: Date;
-      folderId: number;
-    };
-  };
+  folder: FoldersType;
   getAllFolders: () => void;
 }
 
 const FolderCard: React.FC<IProps> = ({ folder, getAllFolders }) => {
   // Вытаскиваю id и title с folder чтобы не писать folder.id или folder.title
-  const { title, hide } = folder;
+  const { title } = folder;
   const navigate = useNavigate();
   const [optionActive, setOptionActive] = useState(false);
   // юсер попадает в содержимого папки при двойном нажатии
   const Redic = () => {
     navigate(`/folder/${title}`);
   };
+  const changeHidingFile = () => {
+    axios
+      .patch(`http://localhost:3001/folder/${title}`, {
+        hide: folder && !folder.hide,
+      })
+      .then((res) => {
+        console.log(res);
+        getAllFolders();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const deleteFolder = async () => {
     await axios.delete(`http://localhost:3001/folder/${title}`);
-    await getAllFolders();
+    getAllFolders();
   };
 
-  useEffect(() => {
-    console.log(hide);
-  }, []);
   return (
     <div
       className={style.file}
@@ -92,6 +86,23 @@ const FolderCard: React.FC<IProps> = ({ folder, getAllFolders }) => {
           <ul>
             <li>
               Название: <span>{title}</span>
+            </li>
+            <li>Создан: {folder.createdAt}</li>
+            <li>
+              Размер:
+              {formatBytes(
+                folder?.uploadedFile.reduce(
+                  (sum: number, obj: uploadedFile) => obj.size + sum,
+                  0
+                )
+              )}
+            </li>
+            <li>
+              Скрыть файл:
+              <Switch
+                defaultChecked={folder?.hide}
+                onClick={() => changeHidingFile()}
+              />
             </li>
           </ul>
         </Modal>

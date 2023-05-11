@@ -14,35 +14,11 @@ import {
 import { Card, Modal } from "antd";
 import { Col, Row } from "antd";
 import formatBytes from "../../helpers/formatBytes";
+import FoldersType from "../../@types/folder";
+import uploadedFile from "../../@types/uploadedFile";
 
 const { confirm } = Modal;
 
-// Тип файла
-type uploadedFile = {
-  id: number;
-  fieldname: string;
-  originalname: string;
-  encoding: string;
-  mimetype: string;
-  destination: string;
-  filename: string;
-  path: string;
-  nameMini: string;
-  size: number;
-  createdAt: string;
-  updatedAt: string;
-  folderId: number;
-};
-
-// Тип папки
-type FoldersType = {
-  id: number;
-  title: string;
-  hide: boolean;
-  uploadedFile: uploadedFile[];
-  createdAt: string;
-  updatedAt: string;
-};
 const { Meta } = Card;
 
 export default function Folder() {
@@ -140,8 +116,6 @@ export default function Folder() {
   };
 
   const changeHidingFile = () => {
-    console.log(folderData?.hide);
-
     axios
       .patch(`http://localhost:3001/folder/${title}`, {
         hide: folderData && !folderData.hide,
@@ -169,6 +143,7 @@ export default function Folder() {
 
   return (
     <>
+      {" "}
       <div className={styles.df}>
         {/* Ссылка на главную (/) */}
         <Link to="/" className={styles.linktohome}>
@@ -186,7 +161,6 @@ export default function Folder() {
           <h1 className={styles.folder__count}>Нет файлов</h1>
         )}
       </div>
-
       <Modal
         title="Изменение называние файла"
         open={ShowEditModal}
@@ -204,7 +178,6 @@ export default function Folder() {
           className={styles.input}
         />
       </Modal>
-
       <Row gutter={[16, 16]} className={`${styles.layout}`}>
         {folderData?.uploadedFile.map((img) => (
           <Col key={img.id} span={8}>
@@ -335,9 +308,9 @@ export default function Folder() {
             </span>
           </li>
           <li>
-            Скрыть файл:{" "}
+            Скрыть файл:
             <Switch
-              defaultChecked={folderData && folderData.hide}
+              defaultChecked={folderData?.hide}
               onClick={() => changeHidingFile()}
             />
           </li>
