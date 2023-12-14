@@ -1,5 +1,10 @@
 У вас на пк должен быть установлен <a href="https://nodejs.org/en">node js</a>
 
+# Stack
+Backend: Nest js, Prisma orm, mysql
+FrontEnd: Reactjs, 
+
+
 # Как запустить backend
 
 
